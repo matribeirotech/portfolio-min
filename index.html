@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matheus Ribeiro | Backend Engineer</title>
+    
+    <!-- Fontes do Figma -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800;900&family=JetBrains+Mono:wght@400;500;600&family=Onest:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+
+    <!-- Navegação -->
+    <nav id="navbar" class="navbar">
+        <div class="nav-container">
+            <!-- Logo -->
+            <div class="logo-group">
+                <div class="logo-icon">M</div>
+                <div class="logo-text">
+                    <div class="logo-name">MATHEUS RIBEIRO</div>
+                    <div class="logo-role">BACKEND ENGINEER</div>
+                </div>
+            </div>
+
+            <!-- Links Desktop -->
+            <div class="nav-links desktop-only">
+                <a href="#sobre">01 SOBRE</a>
+                <a href="#projetos">02 PROJETOS</a>
+                <a href="#contato">03 CONTATO</a>
+            </div>
+
+            <!-- Status -->
+            <div class="nav-status desktop-only">
+                <div class="status-dot"></div>
+                <span>DISPONÍVEL</span>
+            </div>
+
+            <!-- Botão Mobile -->
+            <button id="mobile-menu-btn" class="mobile-only" aria-label="Menu">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M3 6h18M3 12h18M3 18h18" stroke-linecap="round"/>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Menu Mobile Dropdown -->
+        <div id="mobile-menu" class="mobile-menu hidden">
+            <a href="#sobre">01 SOBRE</a>
+            <a href="#projetos">02 PROJETOS</a>
+            <a href="#contato">03 CONTATO</a>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Seção Hero -->
+        <section class="hero-section">
+            <div class="hero-container">
+                <div class="hero-grid">
+                    
+                    <!-- Lado Esquerdo: Textos -->
+                    <div class="hero-content">
+                        <div class="hero-eyebrow">
+                            <span class="eyebrow-symbol">$</span>
+                            <span class="eyebrow-text">transformo processos manuais em sistemas inteligentes</span>
+                        </div>
+
+                        <h1 class="hero-title">
+                            Desenvolvo<br>
+                            sistemas<br>
+                            <span class="text-accent">que eliminam</span><br>
+                            gargalos<br>
+                            operacionais.
+                        </h1>
+
+                        <p class="hero-subtitle">
+                            Especializado em arquitetura backend, integrações e automação de rotinas industriais. Transformo operações manuais em sistemas escaláveis e confiáveis.
+                        </p>
+
+                        <div class="hero-ctas">
+                            <a href="#projetos" class="btn-primary">
+                                VER PROJETOS <span>→</span>
+                            </a>
+                            <a href="#contato" class="btn-secondary">
+                                ENTRAR EM CONTATO
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Lado Direito: Terminal e Stats -->
+                    <div class="hero-visuals desktop-only">
+                        <!-- Terminal Window -->
+                        <div class="terminal-window">
+                            <div class="terminal-header">
+                                <div class="mac-dots">
+                                    <div class="dot red"></div>
+                                    <div class="dot yellow"></div>
+                                    <div class="dot green"></div>
+                                </div>
+                                <span class="terminal-title">pipeline_dxf.py</span>
+                            </div>
+                            <div class="terminal-body">
+                                <div class="code-line"><span class="kw">from</span> automacao <span class="kw">import</span> <span class="id">DxfProcessor</span></div>
+                                <div class="code-line"><span class="kw">from</span> engenharia <span class="kw">import</span> <span class="id">MaquinaLaser</span></div>
+                                <div class="code-line">&nbsp;</div>
+                                <div class="code-line"><span class="kw">class</span> <span class="text-accent">PreparacaoCorte</span>:</div>
+                                <div class="code-line indent-1"><span class="kw">def</span> <span class="id">__init__</span><span class="cm">(self):</span></div>
+                                <div class="code-line indent-2">self.processor = <span class="id">DxfProcessor</span>(</div>
+                                <div class="code-line indent-3">diretorio=<span class="str">"arquivos_cad"</span>,</div>
+                                <div class="code-line indent-3">agrupar_por=<span class="str">"espessura"</span></div>
+                                <div class="code-line indent-2">)</div>
+                                <div class="code-line">&nbsp;</div>
+                                <div class="code-line indent-1"><span class="kw">async def</span> <span class="id">processar</span><span class="cm">(self):</span></div>
+                                <div class="code-line indent-2"><span class="kw">async for</span> lote <span class="kw">in</span> self.processor:</div>
+                                <div class="code-line indent-3"><span class="kw">await</span> <span class="id">MaquinaLaser</span>().enviar(lote)</div>
+                                <div class="code-line">&nbsp;</div>
+                                <div class="terminal-status">
+                                    <span class="text-accent">▶</span>
+                                    <span>Processing 500+ DXF/hr</span>
+                                    <span class="cursor-blink"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Stats Bar -->
+                        <div class="stats-bar">
+                            <div class="stat-item">
+                                <div class="stat-value">5+</div>
+                                <div class="stat-label">PROJETOS</div>
+                            </div>
+                            <div class="stat-item border-left">
+                                <div class="stat-value">Cloud</div>
+                                <div class="stat-label">INFRA/VPS</div>
+                            </div>
+                            <div class="stat-item border-left">
+                                <div class="stat-value">Aut.</div>
+                                <div class="stat-label">INDÚSTRIA</div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção Sobre -->
+        <section id="sobre" class="content-section">
+            <div class="container">
+                
+                <div class="section-label">
+                    <span class="label-number">01</span>
+                    <div class="label-line"></div>
+                    <span class="label-text">SOBRE</span>
+                </div>
+
+                <div class="about-grid">
+                    <div class="about-bio">
+                        <h2 class="section-heading">
+                            Sistemas<br>
+                            <span class="text-accent">confiáveis</span><br>
+                            desde o alicerce.
+                        </h2>
+                        <div class="bio-text">
+                            <p>Minha jornada na tecnologia não começou apenas escrevendo código, mas vivenciando os processos reais da indústria. Com experiência prévia como operador de CNC e analista de PCP, entendo na prática onde estão as dores operacionais e as ineficiências de uma linha de produção.</p>
+                            <p>Como desenvolvedor, foco em construir aplicações que eliminam esses gargalos: desde a automação pesada de preparação de arquivos CAD/DXF até o desenvolvimento de sistemas full-stack e ecossistemas executáveis independentes (standalone).</p>
+                            <p>Atualmente cursando Engenharia de Software, concentro minha evolução no domínio profundo de arquiteturas escaláveis com Java, Spring Boot e bancos relacionais, sempre orquestrando deploys com infraestrutura própria em nuvem (Docker/VPS).</p>
+                        </div>
+                    </div>
+
+                    <div class="about-skills">
+                        <div class="skills-header">
+                            <span class="text-accent">STACK</span>
+                        </div>
+                        <div class="skills-tags">
+                            <span>Java</span>
+                            <span>Spring Boot</span>
+                            <span>Python</span>
+                            <span>Django</span>
+                            <span>PostgreSQL</span>
+                            <span>Docker</span>
+                            <span>Linux</span>
+                            <span>Git/GitHub</span>
+                        </div>
+
+                        <div class="details-table">
+                            <div class="detail-row">
+                                <span class="text-accent">Foco</span>
+                                <span class="text-muted">Desenvolvimento Backend · Automação</span>
+                            </div>
+                            <div class="detail-row">
+                                <span class="text-accent">Ecossistema</span>
+                                <span class="text-muted">Lypsyos · Soluções Corporativas</span>
+                            </div>
+                            <div class="detail-row">
+                                <span class="text-accent">Localização</span>
+                                <span class="text-muted">Votuporanga, SP · Brasil</span>
+                            </div>
+                            <div class="detail-row no-border">
+                                <span class="text-accent">Status</span>
+                                <span class="text-accent">● Disponível para oportunidades</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção Projetos -->
+        <section id="projetos" class="content-section">
+            <div class="container">
+                
+                <div class="section-label">
+                    <span class="label-number">02</span>
+                    <div class="label-line"></div>
+                    <span class="label-text">PROJETOS & CASOS DE USO</span>
+                </div>
+
+                <div class="projects-list">
+                    
+                    <!-- Projeto 1 -->
+                    <div class="project-card">
+                        <div class="project-grid">
+                            <div class="project-number">01</div>
+                            <div class="project-info">
+                                <h3>Automação de Preparação CAD/DXF</h3>
+                                <p>A separação e organização de arquivos DXF para as máquinas de corte a laser exigia muito tempo manual. Desenvolvi uma aplicação desktop em Python que processa lotes inteiros de arquivos e os categoriza automaticamente, evitando erros de roteamento na fábrica.</p>
+                                <div class="project-tags">
+                                    <span>Python</span>
+                                    <span>Desktop App</span>
+                                    <span>Automação Industrial</span>
+                                </div>
+                            </div>
+                            <div class="project-impact">
+                                <div class="impact-label">IMPACTO</div>
+                                <div class="impact-value">Fim do trabalho manual no PCP</div>
+                                <div class="impact-year">2025/2026</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Projeto 2 -->
+                    <div class="project-card">
+                        <div class="project-grid">
+                            <div class="project-number">02</div>
+                            <div class="project-info">
+                                <h3>DBX-V2 (Ecossistema Lypsyos)</h3>
+                                <p>Criação e distribuição de uma ferramenta corporativa independente. Gerenciamento do ciclo de vida completo do software executável (standalone), com controle de versão, assets de lançamento e desenvolvimento contínuo (incluindo refinamentos de UI como Dark Mode).</p>
+                                <div class="project-tags">
+                                    <span>Java</span>
+                                    <span>Spring Boot</span>
+                                    <span>Standalone</span>
+                                </div>
+                            </div>
+                            <div class="project-impact">
+                                <div class="impact-label">IMPACTO</div>
+                                <div class="impact-value">Distribuição Corporativa Independente</div>
+                                <div class="impact-year">2026</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Projeto 3 -->
+                    <div class="project-card">
+                        <div class="project-grid">
+                            <div class="project-number">03</div>
+                            <div class="project-info">
+                                <h3>Sistema de Orçamentos Laser/Plasma</h3>
+                                <p>A precificação de chaparia e serviços a laser era lenta e descentralizada. Desenvolvi uma plataforma web full-stack estruturada para cálculos complexos, totalmente conteinerizada via Docker e hospedada em servidor Linux dedicado (Droplet DigitalOcean).</p>
+                                <div class="project-tags">
+                                    <span>Django</span>
+                                    <span>PostgreSQL</span>
+                                    <span>Docker</span>
+                                    <span>DigitalOcean</span>
+                                </div>
+                            </div>
+                            <div class="project-impact">
+                                <div class="impact-label">IMPACTO</div>
+                                <div class="impact-value">Geração Instantânea e Precisa</div>
+                                <div class="impact-year">2026</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Projeto 4 -->
+                    <div class="project-card">
+                        <div class="project-grid">
+                            <div class="project-number">04</div>
+                            <div class="project-info">
+                                <h3>Otimização de Fluxos PCP</h3>
+                                <p>Integração de dados para eliminar gargalos de comunicação entre o Planejamento e Controle da Produção e outros departamentos. Criação de scripts avançados em planilhas para garantir a integridade e sincronia imediata da informação corporativa.</p>
+                                <div class="project-tags">
+                                    <span>Google Apps Script</span>
+                                    <span>ETL</span>
+                                    <span>Planilhas</span>
+                                </div>
+                            </div>
+                            <div class="project-impact">
+                                <div class="impact-label">IMPACTO</div>
+                                <div class="impact-value">Sincronização Imediata de Dados</div>
+                                <div class="impact-year">2025</div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Projeto 5 -->
+                    <div class="project-card">
+                        <div class="project-grid">
+                            <div class="project-number">05</div>
+                            <div class="project-info">
+                                <h3>GeoQuote: Ferramenta para Orçamentos</h3>
+                                <p>Sistema web de alta performance com arquitetura moderna para otimização e cotação de peças cortadas a laser/plasma.</p>
+                                <div class="project-tags">
+                                    <span>React</span>
+                                    <span>Vite</span>
+                                    <span>Python</span>
+                                </div>
+                            </div>
+                            <div class="project-impact">
+                                <div class="impact-label">IMPACTO</div>
+                                <div class="impact-value">Processamento Ágil de Dados</div>
+                                <div class="impact-year">2026</div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção Contato -->
+        <section id="contato" class="content-section">
+            <div class="container">
+                <div class="section-label">
+                    <span class="label-number">03</span>
+                    <div class="label-line"></div>
+                    <span class="label-text">CONTATO</span>
+                </div>
+
+                <div class="contact-grid">
+                    <div>
+                        <h2 class="section-heading">
+                            Vamos<br>
+                            resolver<br>
+                            <span class="text-accent">problemas.</span>
+                        </h2>
+                        <p class="bio-text" style="max-width: 450px;">
+                            Estou disponível para projetos de backend e automação industrial. Se você tem um gargalo operacional na sua empresa ou fábrica que precisa de tecnologia para ser resolvido, me conta.
+                        </p>
+                    </div>
+
+                    <div class="contact-links">
+                        <a href="https://linkedin.com/in/seu-linkedin" target="_blank" class="contact-card">
+                            <div>
+                                <div class="contact-label">LINKEDIN</div>
+                                <div class="contact-value">Conecte-se comigo</div>
+                            </div>
+                            <span class="contact-arrow">→</span>
+                        </a>
+                        <a href="https://github.com/MaaTT2000" target="_blank" class="contact-card">
+                            <div>
+                                <div class="contact-label">GITHUB</div>
+                                <div class="contact-value">MaaTT2000 (Projetos Pessoais)</div>
+                            </div>
+                            <span class="contact-arrow">→</span>
+                        </a>
+                        <a href="https://github.com/zuckalez0-oss" target="_blank" class="contact-card">
+                            <div>
+                                <div class="contact-label">GITHUB PROFISSIONAL</div>
+                                <div class="contact-value">zuckalez0-oss</div>
+                            </div>
+                            <span class="contact-arrow">→</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <span class="footer-copy">© 2026 MATHEUS RIBEIRO</span>
+            <div class="nav-status">
+                <div class="status-dot"></div>
+                <span style="font-size: 10px;">DISPONÍVEL PARA OPORTUNIDADES</span>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
