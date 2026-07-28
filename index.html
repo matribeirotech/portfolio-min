@@ -101,23 +101,23 @@
                                     <div class="dot yellow"></div>
                                     <div class="dot green"></div>
                                 </div>
-                                <span class="terminal-title">pipeline_dxf.py</span>
+                                <span class="terminal-title">PreparacaoCorteService.java</span>
                             </div>
                             <div class="terminal-body">
-                                <div class="code-line"><span class="kw">from</span> automacao <span class="kw">import</span> <span class="id">DxfProcessor</span></div>
-                                <div class="code-line"><span class="kw">from</span> engenharia <span class="kw">import</span> <span class="id">MaquinaLaser</span></div>
+                                <div class="code-line"><span class="kw">import</span> automacao.<span class="id">DxfProcessor</span>;</div>
+                                <div class="code-line"><span class="kw">import</span> engenharia.<span class="id">MaquinaLaser</span>;</div>
                                 <div class="code-line">&nbsp;</div>
-                                <div class="code-line"><span class="kw">class</span> <span class="text-accent">PreparacaoCorte</span>:</div>
-                                <div class="code-line indent-1"><span class="kw">def</span> <span class="id">__init__</span><span class="cm">(self):</span></div>
-                                <div class="code-line indent-2">self.processor = <span class="id">DxfProcessor</span>(</div>
-                                <div class="code-line indent-3">diretorio=<span class="str">"arquivos_cad"</span>,</div>
-                                <div class="code-line indent-3">agrupar_por=<span class="str">"espessura"</span></div>
-                                <div class="code-line indent-2">)</div>
+                                <div class="code-line"><span class="text-accent">@Service</span></div>
+                                <div class="code-line"><span class="kw">public class</span> <span class="text-accent">PreparacaoCorteService</span> <span class="cm">{</span></div>
+                                <div class="code-line indent-1"><span class="kw">private final</span> <span class="id">DxfProcessor</span> processor = <span class="kw">new</span> <span class="id">DxfProcessor</span>(</div>
+                                <div class="code-line indent-2"><span class="str">"arquivos_cad"</span>, <span class="str">"espessura"</span>);</div>
                                 <div class="code-line">&nbsp;</div>
-                                <div class="code-line indent-1"><span class="kw">async def</span> <span class="id">processar</span><span class="cm">(self):</span></div>
-                                <div class="code-line indent-2"><span class="kw">async for</span> lote <span class="kw">in</span> self.processor:</div>
-                                <div class="code-line indent-3"><span class="kw">await</span> <span class="id">MaquinaLaser</span>().enviar(lote)</div>
-                                <div class="code-line">&nbsp;</div>
+                                <div class="code-line indent-1"><span class="text-accent">@Async</span></div>
+                                <div class="code-line indent-1"><span class="kw">public void</span> <span class="id">processar</span><span class="cm">() {</span></div>
+                                <div class="code-line indent-2">processor.forEach(lote -&gt;</div>
+                                <div class="code-line indent-3"><span class="kw">new</span> <span class="id">MaquinaLaser</span>().enviar(lote));</div>
+                                <div class="code-line indent-1"><span class="cm">}</span></div>
+                                <div class="code-line"><span class="cm">}</span></div>
                                 <div class="terminal-status">
                                     <span class="text-accent">▶</span>
                                     <span>Processing 500+ DXF/hr</span>
