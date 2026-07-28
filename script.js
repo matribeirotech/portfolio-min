@@ -1,43 +1,92 @@
-// Intersection Observer para criar o efeito de Fade-In ao rolar a página
 document.addEventListener('DOMContentLoaded', () => {
-    const observerOptions = {
-        root: null,
-        rootMargin: '0px',
-        threshold: 0.15
-    };
 
-    const observer = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                // Interrompe a observação após o elemento aparecer a primeira vez
-                observer.unobserve(entry.target);
+    /* ------------------------------------------------------------------
+     * 1. Fade-in ao rolar a página
+     * ------------------------------------------------------------------ */
+    const elementsToFade = document.querySelectorAll('.fade-in');
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (prefersReducedMotion || !('IntersectionObserver' in window)) {
+        // Sem animação: mostra tudo de uma vez, sem quebrar a página
+        elementsToFade.forEach(el => el.classList.add('visible'));
+    } else {
+        const observer = new IntersectionObserver((entries, obs) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    obs.unobserve(entry.target);
+                }
+            });
+        }, { root: null, rootMargin: '0px 0px -10% 0px', threshold: 0.15 });
+
+        elementsToFade.forEach(el => observer.observe(el));
+    }
+
+    /* ------------------------------------------------------------------
+     * 2. Menu mobile
+     * ------------------------------------------------------------------ */
+    const menuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    if (menuBtn && mobileMenu) {
+        const setMenu = (open) => {
+            mobileMenu.classList.toggle('hidden', !open);
+            menuBtn.setAttribute('aria-expanded', String(open));
+            menuBtn.setAttribute('aria-label', open ? 'Fechar menu' : 'Abrir menu');
+        };
+
+        menuBtn.addEventListener('click', () => {
+            setMenu(mobileMenu.classList.contains('hidden'));
+        });
+
+        // Fecha ao clicar em um link
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => setMenu(false));
+        });
+
+        // Fecha ao clicar fora ou apertar Esc
+        document.addEventListener('click', (e) => {
+            if (!mobileMenu.classList.contains('hidden') &&
+                !mobileMenu.contains(e.target) &&
+                !menuBtn.contains(e.target)) {
+                setMenu(false);
             }
         });
-    }, observerOptions);
 
-    // Seleciona todos os elementos com a classe fade-in
-    const elementsToFade = document.querySelectorAll('.fade-in');
-    
-    elementsToFade.forEach(element => {
-        observer.observe(element);
-    });
-});
-// Funcionalidade dos botões do Carrossel de Projetos
-document.addEventListener('DOMContentLoaded', () => {
-    const slider = document.getElementById('projects-slider');
-    const btnNext = document.getElementById('next-btn');
-    const btnPrev = document.getElementById('prev-btn');
-
-    if(slider && btnNext && btnPrev) {
-        // Rola um card inteiro para a direita + o espaço (gap)
-        btnNext.addEventListener('click', () => {
-            slider.scrollBy({ left: 432, behavior: 'smooth' }); 
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') setMenu(false);
         });
+    }
 
-        // Rola um card inteiro para a esquerda + o espaço (gap)
-        btnPrev.addEventListener('click', () => {
-            slider.scrollBy({ left: -432, behavior: 'smooth' });
-        });
+    /* ------------------------------------------------------------------
+     * 3. Navbar ganha fundo sólido ao rolar
+     * ------------------------------------------------------------------ */
+    const navbar = document.getElementById('navbar');
+
+    if (navbar) {
+        const onScroll = () => {
+            navbar.classList.toggle('scrolled', window.scrollY > 40);
+        };
+        onScroll();
+        window.addEventListener('scroll', onScroll, { passive: true });
+    }
+
+    /* ------------------------------------------------------------------
+     * 4. Link ativo na navegação conforme a seção visível
+     * ------------------------------------------------------------------ */
+    const sections = document.querySelectorAll('main section[id]');
+    const navLinks = document.querySelectorAll('.nav-links a');
+
+    if (sections.length && navLinks.length && 'IntersectionObserver' in window) {
+        const sectionObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) return;
+                navLinks.forEach(link => {
+                    link.classList.toggle('active', link.getAttribute('href') === `#${entry.target.id}`);
+                });
+            });
+        }, { rootMargin: '-45% 0px -45% 0px' });
+
+        sections.forEach(section => sectionObserver.observe(section));
     }
 });

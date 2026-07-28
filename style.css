@@ -5,12 +5,12 @@
     --color-fg: #eef0e8;
     --color-muted: #546a4a;
     --color-accent: #a8ff3e;
-    
+
     /* Borders & Accents */
     --border: rgba(168, 255, 62, 0.14);
     --border-hover: rgba(168, 255, 62, 0.28);
     --accent-dim: rgba(168, 255, 62, 0.05);
-    
+
     /* Fonts */
     --font-body: 'Onest', sans-serif;
     --font-display: 'Barlow Condensed', sans-serif;
@@ -36,6 +36,13 @@ body {
     overflow-x: hidden;
 }
 
+/* Foco visível para navegação por teclado [NOVO] */
+a:focus-visible,
+button:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
+}
+
 /* Scrollbar */
 ::-webkit-scrollbar { width: 4px; }
 ::-webkit-scrollbar-track { background: var(--color-bg); }
@@ -48,6 +55,17 @@ body {
 .desktop-only { display: flex; }
 .mobile-only { display: none; }
 
+/* Fade-in ao rolar — o script.js procura por estas classes [NOVO] */
+.fade-in {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
 @media (max-width: 768px) {
     .desktop-only { display: none !important; }
     .mobile-only { display: block; }
@@ -55,7 +73,7 @@ body {
 
 /* Layout Containers */
 .container, .hero-container, .footer-container {
-    max-width: 1152px; /* equivalenet a max-w-6xl */
+    max-width: 1152px; /* equivalente a max-w-6xl */
     margin: 0 auto;
     padding: 0 24px;
 }
@@ -132,6 +150,8 @@ body {
     transition: color 0.2s;
 }
 .nav-links a:hover { color: var(--color-accent); }
+/* Link da seção que está na tela [NOVO] */
+.nav-links a.active { color: var(--color-accent); }
 
 .nav-status {
     display: flex;
@@ -162,6 +182,9 @@ body {
     border: none;
     color: var(--color-muted);
     cursor: pointer;
+    /* área de toque confortável [NOVO] */
+    padding: 8px;
+    margin: -8px;
 }
 .mobile-menu {
     background-color: var(--color-surface);
@@ -177,7 +200,10 @@ body {
     font-size: 14px;
     text-decoration: none;
     letter-spacing: 0.1em;
+    transition: color 0.2s; /* [NOVO] */
 }
+.mobile-menu a:hover,
+.mobile-menu a:active { color: var(--color-accent); } /* [NOVO] */
 
 /* Hero Section */
 .hero-section {
@@ -211,7 +237,8 @@ body {
     font-weight: 900;
     text-transform: uppercase;
     line-height: 0.88;
-    font-size: clamp(3.2rem, 7.5vw, 6.5rem);
+    /* mínimo reduzido: "OPERACIONAIS." estourava em telas de 360px [NOVO] */
+    font-size: clamp(2.75rem, 7.5vw, 6.5rem);
     letter-spacing: -0.01em;
     margin-bottom: 32px;
 }
@@ -336,6 +363,7 @@ body {
     color: var(--color-muted);
     margin-top: 4px;
     letter-spacing: 0.1em;
+    line-height: 1.35; /* rótulos de 2 palavras quebram sem colar [NOVO] */
 }
 
 /* Sections Global */
@@ -466,6 +494,23 @@ body {
     padding: 2px 8px;
     border: 1px solid var(--border);
 }
+
+/* Link para o repositório dentro do card [NOVO] */
+.project-link {
+    display: inline-block;
+    margin-top: 16px;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-decoration: none;
+    color: var(--color-muted);
+    transition: color 0.2s, transform 0.2s;
+}
+.project-link:hover {
+    color: var(--color-accent);
+    transform: translateX(3px);
+}
+
 .project-impact {
     text-align: left;
 }
@@ -487,6 +532,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 16px; /* evita o e-mail colar na seta [NOVO] */
     padding: 20px;
     background-color: var(--color-surface);
     border: 1px solid var(--border);
@@ -498,11 +544,22 @@ body {
     border-color: var(--color-accent);
 }
 .contact-label { font-family: var(--font-mono); font-size: 10px; color: var(--color-muted); margin-bottom: 4px; letter-spacing: 0.1em; }
-.contact-value { font-size: 14px; font-weight: 600; color: var(--color-fg); transition: color 0.2s; }
+.contact-value { font-size: 14px; font-weight: 600; color: var(--color-fg); transition: color 0.2s; word-break: break-word; }
 .contact-card:hover .contact-value, .contact-card:hover .contact-arrow { color: var(--color-accent); }
-.contact-arrow { color: var(--color-muted); transition: color 0.2s; }
+.contact-arrow { color: var(--color-muted); transition: color 0.2s; flex-shrink: 0; }
 
 /* Footer */
 .footer { border-top: 1px solid var(--border); padding: 32px 0; }
 .footer-container { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
 .footer-copy { font-family: var(--font-mono); font-size: 10px; color: var(--color-muted); letter-spacing: 0.1em; }
+
+/* Respeita quem desativou animações no sistema [NOVO] */
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .fade-in { opacity: 1; transform: none; }
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
